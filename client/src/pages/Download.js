@@ -1,10 +1,14 @@
 import { useState, useRef } from 'react'
-import './Ready.scss'
+import './Download.scss'
 
 
-const Ready = () => {
+const Download = () => {
   const [link, setLink ] = useState('https://wormhole.app/nvjez#KYKTdUCK0SLKZ0AcAl2s4g')
   const [buttonText, setButtonText] = useState('Copy Link')
+  const [file, setFile] = useState({
+    name: '2o3u4p23j.jpg',
+    size: '99.2 kB'
+  })
 
   const ref = useRef()
   const copyToClipboard = () => {
@@ -14,22 +18,32 @@ const Ready = () => {
   }
 
   return (
-  <div className='ready'>
+  <div className='download'>
     <div className='info'>
-      <h2>Your file is ready to share!</h2>
-      <p> Copy the link to share your file</p>
+      <h2>You've got a file!</h2>
+      <div className='file'>
+        <div className='up'>
+          <h1>1 file</h1>
+          <button>Download</button>
+        </div>
+        <div className='down'>
+          <p>{file.name}</p>
+          <p>{file.size}</p>
+        </div>
+      </div>
+      <p>Share your file </p>
       <div className='link'>
-        <input type='text' value={link}></input>
+        <input type='text' value={link} readOnly></input>
         <button onClick={copyToClipboard}>{buttonText}</button>
+        <button className='qr-button'>Show QR Code</button>
+
       </div>
     </div>
     <div className='alternatives'>
-      <button className='qr-button'>Show QR Code</button>
 
     </div>
-    <p> Your file will be deleted in 10 minutes.</p>
   </div>
   )
 }
 
-export default Ready
+export default Download

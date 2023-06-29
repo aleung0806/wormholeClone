@@ -1,6 +1,6 @@
 @import '../styles/_mixins.scss';
 
-  .ready {
+  .download {
     @include flex-column;
     padding: 2rem;
     border-radius: 1rem;
@@ -14,10 +14,34 @@
       }
       p {
         margin: 0;
-
         font-size: 22px;
         color: white;
       }
+    }
+
+    .file{
+      @include flex-column;
+      padding: 1rem;
+      padding-bottom: 5rem;
+
+      .up{
+        @include flex-row;
+        gap: 2rem;
+        justify-content: space-between;
+        width: 20rem;
+
+      }
+      .down {
+        @include flex-row;
+        justify-content: space-between;
+        p {
+          font-size: 18px;
+        }
+        width: 20rem;
+        opacity: 0.75;
+
+      }
+      
     }
 
     .link {

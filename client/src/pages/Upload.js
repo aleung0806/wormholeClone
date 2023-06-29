@@ -9,7 +9,7 @@ const Upload = () => {
     ref.current.click()
   }
   const upload = (e) => {
-    ref.current.click()
+    setFile(e.target.files[0])
   }
 
   return (

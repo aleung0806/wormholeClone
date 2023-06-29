@@ -19,13 +19,12 @@ const Ready = () => {
       <h2>Your file is ready to share!</h2>
       <p> Copy the link to share your file</p>
       <div className='link'>
-        <input type='text' value={link}></input>
+        <input type='text' readOnly value={link}></input>
         <button onClick={copyToClipboard}>{buttonText}</button>
+        <button className='qr-button'>Show QR Code</button>
       </div>
     </div>
     <div className='alternatives'>
-      <button className='qr-button'>Show QR Code</button>
-
     </div>
     <p> Your file will be deleted in 10 minutes.</p>
   </div>
