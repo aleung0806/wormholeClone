@@ -1,0 +1,53 @@
+@import '../styles/_mixins.scss';
+
+  .ready {
+    @include flex-column;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-image: url('../../public/galaxy-dark.png');
+    .info {
+      @include flex-column;
+      h2 {
+        opacity: 1;
+        font-size: 36px;
+        color: #FF0080;
+      }
+      p {
+        margin: 0;
+
+        font-size: 22px;
+        color: white;
+      }
+    }
+
+    .link {
+      @include flex-row;
+      padding: 2rem;
+      gap: 1rem;
+      input {
+        width: 25rem;
+
+        display: flex;
+        user-select: all;
+        border-style: solid;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        border-width: 1px;
+        background-color: transparent;
+        color: white;
+        font-size: 18px;
+      }
+    }
+
+    .qr-button {
+      background-color: darkmagenta;
+    }
+
+    
+
+
+
+  }
+
+
+

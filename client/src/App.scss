@@ -1,0 +1,64 @@
+@import './styles/_mixins.scss';
+
+.app {
+  @include flex-column;
+  background-image: url('../public/galaxy.jpg');
+  height: 100vh;
+  justify-content: space-between;
+  .nav {
+    @include flex-row;
+    height: 5rem;
+    justify-content: flex-start;
+    width: 100vw;
+    h1 {
+      margin-left: 15rem;
+      display: flex;
+      font-size: 24px;
+      color: white;
+    }
+
+  }
+
+  .content {
+    @include flex-column;
+    padding: 2rem;
+    justify-content: space-between;
+    border-radius: 1rem;
+    background-image: url('../public/galaxy-dark.png');
+
+    .info {
+      @include flex-column;
+      h2 {
+        opacity: 1;
+        font-size: 36px;
+        color: #FF0080;
+      }
+      p {
+        font-size: 18px;
+        color: white;
+      }
+    }
+
+    .upload {
+      @include flex-column;
+      border-style: dashed;
+      border-color: $light-gray;
+      border-radius: 1rem;
+      height: 25rem;
+      width: 45rem;
+      
+      input {
+        display: none;
+      }
+      p {
+        font-size: 16px;
+        color: white;
+      }
+    }
+
+
+  }
+}
+
+
+
