@@ -39,14 +39,18 @@ const Download = () => {
     })
       .then(async (response) => {
         const blob = await response.blob();
-        console.log('settingUrl')
         setUrl(URL.createObjectURL(blob))
-        ref.current.click()
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   }
+
+  useEffect(() => {
+    if (url !== null){
+      ref.current.click()
+    }
+  }, [url])
 
   return (
 
@@ -60,7 +64,7 @@ const Download = () => {
           <div className='up'>
             <h1>1 file</h1>
             <button onClick={download}>Download</button>
-            <a href={url} download={file.originalName} ref={ref}></a>
+            <a href={url} download={file.originalname} ref={ref}></a>
           </div>
           <div className='down'>
             <p>{file.originalname}</p>

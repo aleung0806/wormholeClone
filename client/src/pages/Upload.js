@@ -28,7 +28,6 @@ const Upload = () => {
       body: formData,
     })
     .then((response) => {
-      console.log(response.json().message)
       navigate(`/${uuid}/share`)
     })
     .catch((error) => {
