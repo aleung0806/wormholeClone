@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require('multer')
 const cors = require('cors')
 const app = express();
+
 // app.use(helmet());
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
@@ -32,11 +33,29 @@ const storage = multer.diskStorage({
 
 // Create the multer upload middleware
 const upload = multer({ storage });
+const fileMap = {}
+app.post('/upload', [
+  upload.single('uploaded_file'),
+  (req, res) => { 
+    if (req.file){
+      fileMap[req.body.key] = req.file
+      console.log('uploaded', req.file.originalname)
+      res.status(200).json({ message: 'File uploaded successfully.' })
+    }
+  }, 
+  ]
+)
 
-app.post('/upload', upload.single('file'), (req, res) => {
-  console.log('upload: ', req.file)
-  console.log('Uploaded file:', req.file);
-  res.status(200).json({ message: 'File uploaded successfully.' });
+app.get('/file/:key', (req, res) => {
+  const file = fileMap[req.params.key]
+  console.log('downloading', file.originalname)
+  res.download(`${__dirname}/uploads/${file.originalname}`)
+})
+
+app.get('/info/:key', (req, res) => {
+  const file = fileMap[req.params.key]
+  console.log('file', file)
+  res.status(200).send(file)
 })
 
 module.exports = app;
