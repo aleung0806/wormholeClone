@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import './Download.scss'
 import { useParams } from 'react-router-dom'
-
+import { fetchFileInfo, downloadFile } from '../services'
 const Download = () => {
   let { id } = useParams()
-  const [link, setLink ] = useState(`localhost:3000/${id}`)
+  const link = `localhost:3000/${id}`
   const [buttonText, setButtonText] = useState('Copy Link')
   const [url, setUrl] = useState(null)
   const [file, setFileInfo] = useState(null)
@@ -18,32 +18,16 @@ const Download = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3001/info/${id}`, {
-      method: 'GET'
-    })
-    .then((response) => {
-      return response.json()
-    })
-    .then((data) => {
-      setFileInfo(data)
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    (async () => {
+      const info = await fetchFileInfo(id)
+      setFileInfo(info)
+    })()
 
   }, [])
 
-  const download = () => {
-      fetch(`http://localhost:3001/file/${id}`, {
-      method: 'GET'
-    })
-      .then(async (response) => {
-        const blob = await response.blob();
-        setUrl(URL.createObjectURL(blob))
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+  const download = async () => {
+    const data = await downloadFile(id)
+    setUrl(URL.createObjectURL(data))
   }
 
   useEffect(() => {

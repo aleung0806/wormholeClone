@@ -5,10 +5,9 @@ import { useParams } from 'react-router-dom'
 
 const Ready = () => {
   let { id } = useParams()
-  const [link, setLink ] = useState(`localhost:3000/${id}`)
+  const link = `localhost:3000/${id}`
   const [buttonText, setButtonText] = useState('Copy Link')
 
-  const ref = useRef()
   const copyToClipboard = () => {
     navigator.clipboard.writeText(link)
     setButtonText('Copied!')
