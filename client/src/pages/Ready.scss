@@ -42,8 +42,30 @@
     .qr-button {
       background-color: darkmagenta;
     }
-
     
+    .deleteOptions {
+      @include flex-row;
+      gap: 1rem;
+    }
+    select {
+      border-style: solid;
+      border-radius: 0.25rem;
+      padding: 0.5rem;
+      border-width: 1px;
+      background-color: transparent;
+      color: white;
+      font-size: 14px;
+      
+    }
+    option {
+      border-style: solid;
+      border-radius: 0.25rem;
+      padding: 1rem;
+      border-width: 1px;
+      background-color: darkmagenta;
+      color: white;
+      font-size: 14px;
+    }
 
 
 

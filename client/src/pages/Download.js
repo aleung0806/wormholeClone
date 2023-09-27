@@ -7,7 +7,7 @@ const Download = () => {
   const link = `localhost:3000/${id}`
   const [buttonText, setButtonText] = useState('Copy Link')
   const [url, setUrl] = useState(null)
-  const [file, setFileInfo] = useState(null)
+  const [fileInfo, setFileInfo] = useState(null)
 
   const ref = useRef(null)
 
@@ -39,7 +39,7 @@ const Download = () => {
   return (
 
     <div className='download'>
-      {file !== null  &&
+      {fileInfo !== null  &&
       (
         <div>
       <div className='info'>
@@ -48,11 +48,11 @@ const Download = () => {
           <div className='up'>
             <h1>1 file</h1>
             <button onClick={download}>Download</button>
-            <a href={url} download={file.originalname} ref={ref}></a>
+            <a href={url} download={fileInfo.originalname} ref={ref}></a>
           </div>
           <div className='down'>
-            <p>{file.originalname}</p>
-            <p>{`${Math.round(file.size / 1024 / 1024 * 100) / 100} MB`}</p>
+            <p>{fileInfo.originalname}</p>
+            <p>{`${Math.round(fileInfo.size / 1024 / 1024 * 100) / 100} MB`}</p>
           </div>
         </div>
         <p>Share your file </p>
