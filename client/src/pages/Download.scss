@@ -32,8 +32,8 @@
 
       }
       .down {
-        @include flex-row;
-        justify-content: space-between;
+        @include flex-column;
+        align-items: 'flex-start';
         p {
           font-size: 18px;
         }

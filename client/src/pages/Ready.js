@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react'
 import './Ready.scss'
+import { useParams } from 'react-router-dom'
 
 
 const Ready = () => {
-  const [link, setLink ] = useState('https://wormhole.app/nvjez#KYKTdUCK0SLKZ0AcAl2s4g')
+  let { id } = useParams()
+  const [link, setLink ] = useState(`localhost:3000/${id}`)
   const [buttonText, setButtonText] = useState('Copy Link')
 
   const ref = useRef()

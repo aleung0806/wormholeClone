@@ -1,40 +1,56 @@
 import { useState, useRef } from 'react'
 import './Upload.scss'
+import { useNavigate } from 'react-router';
 
+const { v4: uuidv4 } = require('uuid');
+  
 
 const Upload = () => {
   const [file, setFile ] = useState(null)
+  const navigate = useNavigate()
   const ref = useRef()
   const openInput = (e) => {
     ref.current.click()
   }
-  const upload = () => {
+  const upload = (selectedFile) => {
     const formData = new FormData();
-    formData.append('file', file);
-    console.log('upload: ', file)
+    const uuid = uuidv4()
+    formData.append('uploaded_file', selectedFile)
+    formData.append('key', uuid)
+
+    // console.log('formData')
+    // for (const entry of formData){
+    //   console.log('entry', entry)
+    // }
+
     fetch('http://localhost:3001/upload', {
       method: 'POST',
       body: formData,
-
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.message);
-        // Handle success or display a success message to the user
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle error or display an error message to the user
-      });
+    .then((response) => {
+      console.log(response.json().message)
+      navigate(`/${uuid}/share`)
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      // Handle error or display an error message to the user
+    });
   };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setFile(selectedFile);
-    upload()
+    console.log('selectedFile', selectedFile)
+    if (selectedFile.size > 1024 * 1024 * 10){
+      console.error('Error:', 'file too big');
+    }
+    else{
+      setFile(selectedFile)
+      upload(selectedFile)
+    }
   };
 
   return (
+    
   <div className='upload'>
     <div className='info'>
       <h2>Simple, private file sharing</h2>

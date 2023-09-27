@@ -3,6 +3,7 @@ import { useState, useRef } from 'react'
 import Upload from './pages/Upload'
 import Ready from './pages/Ready'
 import Download from './pages/Download'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 const App = () => {
   
@@ -14,9 +15,13 @@ const App = () => {
       <div className='nav'>
         <h1>Wormhole</h1>
       </div>
-        <Upload/>
-        {/* <Ready/> */}
-        {/* <Download/> */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<Upload /> } />
+          <Route path="/:id/share" element={<Ready /> } />
+          <Route path="/:id" element={<Download /> } />
+        </Routes>
+      </Router>
       <div className='footer'>
 
       </div>
