@@ -9,6 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 const Upload = () => {
   const [file, setFile ] = useState(null)
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   const ref = useRef()
   const openInput = (e) => {
     ref.current.click()
@@ -18,7 +19,9 @@ const Upload = () => {
     const uuid = uuidv4()
     formData.append('uploaded_file', selectedFile)
     formData.append('key', uuid)
+    setLoading(true)
     await uploadFile(formData)
+    
     console.log('after')
     navigate(`/${uuid}/share`)
 
@@ -36,19 +39,25 @@ const Upload = () => {
   };
 
   return (
-    <div className='upload'>
-      <div className='info'>
-        <h2>Simple, private file sharing</h2>
+    <div>
+      { loading
+      ? <p>loading ... </p>
+      : (
+        <div className='upload'>
+        <div className='info'>
+          <h2>Simple, private file sharing</h2>
+        </div>
+        <div className='drop'>
+          {/* <input type="file" onChange={handleFileChange}/> */}
+          <button className='upload-button' onClick={openInput}>
+            Select files to send
+          </button>
+          <input className='input' ref={ref} type="file" onChange={handleFileChange}/>
+          <p>Or drag and drop</p>
+        </div>
       </div>
-      <div className='drop'>
-        {/* <input type="file" onChange={handleFileChange}/> */}
-        <button className='upload-button' onClick={openInput}>
-          Select files to send
-        </button>
-        <input className='input' ref={ref} type="file" onChange={handleFileChange}/>
-
-        <p>Or drag and drop</p>
-      </div>
+      ) 
+      }
     </div>
   )
 }

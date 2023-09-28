@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import './Ready.scss'
 import { useParams } from 'react-router-dom'
 
-
 const Ready = () => {
   let { id } = useParams()
   const [time, setTime] = useState('5')
@@ -15,6 +14,14 @@ const Ready = () => {
     navigator.clipboard.writeText(link)
     setButtonText('Copied!')
     setTimeout(() => {setButtonText('Copy Link')}, 1000)
+  }
+
+  const handleTimeDropdown = (e) => {
+    setTime(e.target.value)
+  }
+
+  const handleDownloadsDropdown = (e) => {
+    setDownloads(e.target.value)
   }
 
   return (
@@ -32,13 +39,13 @@ const Ready = () => {
     </div>
     <div className='deleteOptions'>
       <p> Your file will be deleted in </p>
-      <select value={time} onChange={(e) => setTime(e.target.value)}>
+      <select value={time} onChange={handleTimeDropdown}>
         <option value='5' > 5 minutes</option>
         <option value='10'> 10 minutes</option>
         <option value='60'> 60 minutes</option>
       </select>
       <p> or after</p>
-      <select value={downloads} onChange={(e) => setDownloads(e.target.value)}>
+      <select value={downloads} onChange={handleDownloadsDropdown}>
         <option value='1' > 1 download</option>
         <option value='5'> 5 downloads</option>
         <option value='10'> 10 downloads</option>
