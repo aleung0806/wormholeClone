@@ -39,6 +39,12 @@ app.post('/upload', [
   (req, res) => { 
     if (req.file){
       fileMap[req.body.key] = req.file
+      fileMap[req.body.key].downloads = 0
+      fileMap[req.body.key].timeUploaded = new Date()
+
+      fileMap[req.body.key].maxDownloads = 1000
+      fileMap[req.body.key].maxTime = 60 * 60
+
       console.log('uploaded', req.file.originalname)
       res.status(200).json({ message: 'File uploaded successfully.' })
     }
@@ -50,6 +56,8 @@ app.get('/file/:key', (req, res) => {
   const file = fileMap[req.params.key]
   console.log('downloading', file.originalname)
   res.download(`${__dirname}/uploads/${file.originalname}`)
+  fileMap[req.params.key]
+
 })
 
 app.get('/info/:key', (req, res) => {
