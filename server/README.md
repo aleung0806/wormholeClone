@@ -14,3 +14,6 @@ docker start <container id>
 docker start -i <container id> *interactive mode
 docker kill <container id>
 docker logs <container id>
+docker exec -it <container id> /bin/bash
+
+exit container: ctrl+d
