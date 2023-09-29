@@ -16,4 +16,18 @@ docker kill <container id>
 docker logs <container id>
 docker exec -it <container id> /bin/bash
 
+*stop all containers
+docker stop $(docker ps -a -q)
+
+
 exit container: ctrl+d
+
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+*let regular user run docker
+
+DOCKER COMPOSE:
+docker compose up --build
+docker compose up -d
+
