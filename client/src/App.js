@@ -1,10 +1,10 @@
 import './App.scss'
-import { useState, useRef } from 'react'
 import Upload from './pages/Upload'
 import Ready from './pages/Ready'
 import Download from './pages/Download'
-import {BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom'
+import {Routes, Route, useNavigate} from 'react-router-dom'
 
+console.log(process.env.NODE_ENV)
 const App = () => {
   const navigate = useNavigate()
 

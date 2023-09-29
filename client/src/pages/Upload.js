@@ -7,7 +7,6 @@ const { v4: uuidv4 } = require('uuid');
   
 
 const Upload = () => {
-  const [file, setFile ] = useState(null)
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const ref = useRef()
@@ -22,7 +21,6 @@ const Upload = () => {
     setLoading(true)
     await uploadFile(formData)
     
-    console.log('after')
     navigate(`/${uuid}/share`)
 
   };
@@ -33,7 +31,6 @@ const Upload = () => {
       console.error('Error:', 'file too big');
     }
     else{
-      setFile(selectedFile)
       await upload(selectedFile)
     }
   };
@@ -41,7 +38,7 @@ const Upload = () => {
   return (
     <div>
       { loading
-      ? <p>loading ... </p>
+      ? <p>uploading file... </p>
       : (
         <div className='upload'>
         <div className='info'>

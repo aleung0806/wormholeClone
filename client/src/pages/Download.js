@@ -2,9 +2,13 @@ import { useState, useRef, useEffect } from 'react'
 import './Download.scss'
 import { useParams } from 'react-router-dom'
 import { fetchFileInfo, downloadFile } from '../services'
+const domain = process.env.DOMAIN
+
+
 const Download = () => {
   let { id } = useParams()
-  const link = `localhost:3000/${id}`
+  const link = `${domain}/${id}`
+
   const [buttonText, setButtonText] = useState('Copy Link')
   const [url, setUrl] = useState(null)
   const [fileInfo, setFileInfo] = useState(null)
@@ -22,8 +26,7 @@ const Download = () => {
       const info = await fetchFileInfo(id)
       setFileInfo(info)
     })()
-
-  }, [])
+  }, [id])
 
   const download = async () => {
     const data = await downloadFile(id)
@@ -48,6 +51,7 @@ const Download = () => {
           <div className='up'>
             <h1>1 file</h1>
             <button onClick={download}>Download</button>
+            {/* eslint-disable-next-line */}
             <a href={url} download={fileInfo.originalname} ref={ref}></a>
           </div>
           <div className='down'>

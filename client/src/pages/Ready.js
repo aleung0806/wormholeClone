@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import './Ready.scss'
 import { useParams } from 'react-router-dom'
+const domain = process.env.DOMAIN
 
 const Ready = () => {
   let { id } = useParams()
+  const link = `${domain}/${id}`
+
   const [time, setTime] = useState('5')
   const [downloads, setDownloads] = useState('1')
-
-  const link = `localhost:3000/${id}`
   const [buttonText, setButtonText] = useState('Copy Link')
 
   const copyToClipboard = () => {
