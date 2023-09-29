@@ -10,7 +10,7 @@ const app = express();
 // app.use(compression());
 app.use(cors());
 app.options('*', cors());
-
+app.use(express.static('build'))
 // app.use(morgan)
 // app.use(sessionHandler)
 // // app.use(passport.initialize());
