@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router';
 import { uploadFile } from '../services';
 
 const { v4: uuidv4 } = require('uuid');
-  
+const domain = process.env.REACT_APP_DOMAIN
+
 
 const Upload = () => {
+  console.log('domain', domain)
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const ref = useRef()

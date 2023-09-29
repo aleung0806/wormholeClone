@@ -4,7 +4,6 @@ import Ready from './pages/Ready'
 import Download from './pages/Download'
 import {Routes, Route, useNavigate} from 'react-router-dom'
 
-console.log(process.env.NODE_ENV)
 const App = () => {
   const navigate = useNavigate()
 

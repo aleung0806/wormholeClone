@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import './Download.scss'
 import { useParams } from 'react-router-dom'
 import { fetchFileInfo, downloadFile } from '../services'
-const domain = process.env.DOMAIN
+const domain = process.env.REACT_APP_DOMAIN
 
 
 const Download = () => {

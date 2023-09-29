@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './Ready.scss'
 import { useParams } from 'react-router-dom'
-const domain = process.env.DOMAIN
+const domain = process.env.REACT_APP_DOMAIN
 
 const Ready = () => {
   let { id } = useParams()
