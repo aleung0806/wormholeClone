@@ -31,5 +31,5 @@ RUN rm -r client
 
 #start server
 WORKDIR /usr/src/app/server
-EXPOSE 8080
+# EXPOSE 8080 commented out for dokku deploy
 CMD npm run start:prod
